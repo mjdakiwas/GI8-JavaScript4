@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Livvic", sans-serif;
+}
+body header {
+  height: fit-content;
+  width: 100%;
+  background-color: #775bb9;
+}
+body hr {
+  margin-bottom: 1rem;
+}
+body h1 {
+  padding: 1.5rem 0 1.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+}
+body h2 {
+  margin: 0.5rem 0 0.5rem 0;
+  font-size: 1.65rem;
+}
+
+#mobile-tracker #overview-display__container #balance-display__container {
+  text-align: center;
+}
+#mobile-tracker #overview-display__container #balance-display__container h2 {
+  margin-top: 1.25rem;
+}
+#mobile-tracker #transaction-display__container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 60%;
+  background-color: #775bb9;
+  border-radius: 2rem 2rem 0 0;
+}
+#mobile-tracker #transaction-display__container h2 {
+  text-align: center;
+  color: #fff;
+}
+#mobile-tracker #transaction-display__container button {
+  background-color: transparent;
+  border: none;
+}
+#mobile-tracker #transaction-display__container button:hover {
+  cursor: pointer;
+}
+#mobile-tracker #transaction-display__container .material-icons {
+  color: rgb(255, 255, 255);
+}
+#mobile-tracker #transaction-display__container .transaction-header__container {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  margin: 1.25rem 0 1rem 0;
+}
+#mobile-tracker #transaction-display__container .transaction-header__container i {
+  font-size: 2.5rem;
+}
+#mobile-tracker #form-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+#mobile-tracker #new-transaction__container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 60%;
+  background-color: #775bb9;
+  border-radius: 2rem 2rem 0 0;
+  display: none;
+  flex-direction: column;
+  z-index: 1;
+  box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.5);
+}
+#mobile-tracker #new-transaction__container h2 {
+  text-align: center;
+  color: #fff;
+}
+#mobile-tracker #new-transaction__container button {
+  background-color: transparent;
+  border: none;
+}
+#mobile-tracker #new-transaction__container button:hover {
+  cursor: pointer;
+}
+#mobile-tracker #new-transaction__container .material-icons {
+  color: rgb(255, 255, 255);
+}
+#mobile-tracker #new-transaction__container .transaction-header__container {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  margin: 1.25rem 0 1rem 0;
+}
+#mobile-tracker #new-transaction__container .transaction-header__container i {
+  font-size: 2.5rem;
+}
+#mobile-tracker #new-transaction__container .transaction-header__container h2 {
+  grid-column: 2/3;
+}
+#mobile-tracker #new-transaction__container .transaction-header__container #close-new-transaction {
+  grid-column: 3/4;
+}
+#mobile-tracker #new-transaction__container > div {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 1.5rem 0 1.5rem;
+}
+#mobile-tracker #new-transaction__container > div label {
+  margin-bottom: 0.5rem;
+  color: white;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+#mobile-tracker #new-transaction__container > div > div {
+  position: relative;
+}
+#mobile-tracker #new-transaction__container > div > div i {
+  position: absolute;
+  top: 0.75rem;
+  left: 1rem;
+  color: #5f45a0 !important;
+  z-index: 2;
+}
+#mobile-tracker #new-transaction__container > div > div input {
+  width: 100%;
+}
+#mobile-tracker #new-transaction__container select,
+#mobile-tracker #new-transaction__container input {
+  height: 3rem;
+  border-radius: 12px;
+  padding: 0.5rem 1rem 0.5rem 1.5rem;
+  border: none;
+  font-family: "Livvic", sans-serif;
+  font-size: 0.9rem;
+}
+#mobile-tracker #new-transaction__container select:focus,
+#mobile-tracker #new-transaction__container input:focus {
+  outline: none;
+}
+#mobile-tracker #new-transaction__container #amount {
+  padding-left: 3rem;
+}
+#mobile-tracker #new-transaction__container div + button {
+  width: fit-content;
+  margin: 2rem auto;
+  padding: 1.25rem 2rem;
+  border-radius: 35px;
+  background-color: #473188;
+  color: #fff;
+  font-family: "Livvic", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+/*# sourceMappingURL=style.css.map */

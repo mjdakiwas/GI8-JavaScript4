@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Livvic:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <!-- input income and income description
+        button add income -->
+
+        <!-- input expense and expense description
+        button add expense -->
+
+        <!-- display total budget, income, expenses -->
+        <header>
+            <h1>My Budget Tracker</h1>
+        </header>
+
+        <section id="mobile-tracker">
+            <section id="overview-display__container">
+
+                <section id="balance-display__container">
+                    <h2>Balance</h2>
+                    <p id="balance-display">$0.00</p>
+                </section>
+
+                <!-- <section id="income-display__container">
+                    <h2>Income</h2>
+                    <p id="income-display"></p>
+                </section>
+
+                <section id="expense-display__container">
+                    <h2>Expense</h2>
+                    <p id="expense-display"></p>
+                </section> -->
+            </section>
+
+
+            <section id="transaction-display__container">
+                <div class="transaction-header__container">
+                    <button id="expense-add"><i class="material-icons">
+                            add_circle
+                        </i></button>
+                    <h2>Transactions</h2>
+                </div>
+
+                <hr>
+
+                <section id="transaction-display">
+
+                </section>
+            </section>
+
+            <div id="form-overlay"></div>
+            <form id="new-transaction__container">
+                <div class="transaction-header__container">
+                    <h2>Add New Transaction</h2>
+                    <button id="close-new-transaction"><i class="material-icons">
+                            cancel
+                        </i></button>
+                </div>
+
+                <hr>
+
+                <div>
+                    <label for="transaction-type">Transaction Type</label>
+                    <select id="transaction-type" name="transaction-type">
+                        <option value="">Transaction Type</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description">
+                </div>
+
+                <div>
+                    <label for="amount">Amount</label>
+                    <div>
+                        <i class="material-icons">
+                            attach_money
+                        </i>
+                        <input type="number" name="amount" id="amount">
+                    </div>
+                </div>
+
+                <button type="submit" id="add-transaction">ADD TRANSACTION</button>
+            </form>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
