@@ -20,6 +20,15 @@
         <hr>
     </header>
 
+    <!-- note nice to have
+    ** sort transaction to income and expense -> have separate views/arrays
+    ** redesign desktop add new transaction section
+    ** add animations for overview and adding new transaction
+    ** edit transaction ui to be individual (add rounded border, box shadow)
+    ** based on transaction type, change amount color
+    ** allow user to edit transaction => which will dynamically impact overview amounts
+    ** edit ui of dropdown selection and amount input invalid notification default -->
+
     <main>
         <div id="form-overlay"></div>
 
@@ -66,14 +75,33 @@
                     <button id="expense-add"><i class="material-icons">
                             add_circle
                         </i></button>
-                    <h2>Transactions</h2>
+                    <div id="section-title">
+                        <h2 id="current-title">Transactions</h2><i class="material-icons">expand_more</i>
+                    </div>
+                    <div id="transaction-view-dropdown">
+                        <h2 id="transactions">Transactions</h2>
+                        <h2 id="income">Income</h2>
+                        <h2 id="expense">Expense</h2>
+                    </div>
                 </div>
 
                 <hr>
 
                 <section id="transaction-display">
-                    <div id="placeholder-container">
+                    <div class="placeholder-container">
                         <p>No transactions.</p>
+                    </div>
+                </section>
+
+                <section id="transaction-display__income">
+                    <div class="placeholder-container">
+                        <p>No income transactions.</p>
+                    </div>
+                </section>
+
+                <section id="transaction-display__expense">
+                    <div class="placeholder-container">
+                        <p>No expense transactions.</p>
                     </div>
                 </section>
             </section>

@@ -17,7 +17,7 @@ class Budget {
 
     getIncomeTransactions() {
         for (const transaction of transactionList) {
-            if (transaction.transactionType === 'income') {
+            if (transaction['transaction-type'] === 'income') {
                 this.incomeList.unshift(transaction);
             }
         }
@@ -26,7 +26,7 @@ class Budget {
 
     getExpenseTransactions() {
         for (const transaction of transactionList) {
-            if (transaction.transactionType === 'expense') {
+            if (transaction['transaction-type'] === 'expense') {
                 this.expenseList.unshift(transaction);
             }
         }
@@ -180,6 +180,7 @@ addTransactionForm.addEventListener('submit', function (event) {
         expenseDisplay.innerText = `$${expense}`;
 
         formOveray.style.display = 'none';
+        mobileView.addEventListener('change', windowResize(mobileView));
 
         event.target.reset();
     }
@@ -197,6 +198,7 @@ windowResize(mobileView);
 mobileView.addEventListener('change', windowResize(mobileView));
 
 addTransactionBtn.addEventListener('click', () => {
+    selectTransactionHeader.style.display = 'none';
     addTransactionForm.style.display = 'flex';
     formOveray.style.display = 'block';
     emptyForm();
@@ -255,3 +257,70 @@ for (let i = 0; i < indicators.length; i++) {
         indicators[i].classList.add('active');
     });
 }
+
+// transaction display
+const transactionHeaderDisplay = document.getElementById('section-title');
+const currentTransactionHeader = document.getElementById('current-title');
+const selectTransactionHeader = document.getElementById('transaction-view-dropdown');
+const transactionHeader = document.getElementById('transactions');
+const incomeHeader = document.getElementById('income');
+const expenseHeader = document.getElementById('expense');
+const incomeTransactionsDisplay = document.getElementById('transaction-display__income');
+const expenseTransactionsDisplay = document.getElementById('transaction-display__expense');
+
+transactionHeaderDisplay.addEventListener('click', () => {
+    if (window.getComputedStyle(selectTransactionHeader).getPropertyValue('display') === 'none') {
+        selectTransactionHeader.style.display = 'flex';
+    } else if (window.getComputedStyle(selectTransactionHeader).getPropertyValue('display') === 'flex') {
+        selectTransactionHeader.style.display = 'none';
+    }
+
+    if (currentTransactionHeader.textContent == transactionHeader.textContent) {
+        transactionHeader.style.display = 'none';
+        incomeHeader.style.display = 'block';
+        expenseHeader.style.display = 'block';
+    } else if (currentTransactionHeader.textContent == incomeHeader.textContent) {
+        transactionHeader.style.display = 'block';
+        incomeHeader.style.display = 'none';
+        expenseHeader.style.display = 'block';
+    } else if (currentTransactionHeader.textContent == expenseHeader.textContent) {
+        transactionHeader.style.display = 'block';
+        incomeHeader.style.display = 'block';
+        expenseHeader.style.display = 'none';
+    }
+})
+
+transactionHeader.addEventListener('click', () => {
+    currentTransactionHeader.innerText = transactionHeader.innerText;
+    selectTransactionHeader.style.display = 'none';
+    transactionsDisplay.style.display = 'flex';
+    incomeTransactionsDisplay.style.display = 'none';
+    expenseTransactionsDisplay.style.display = 'none';
+    if (transactionList.length !== 0) {
+        budgetTracker.displayTransactions(transactionsDisplay, transactionList);
+    }
+})
+
+incomeHeader.addEventListener('click', () => {
+    currentTransactionHeader.innerText = incomeHeader.innerText;
+    selectTransactionHeader.style.display = 'none';
+    transactionsDisplay.style.display = 'none';
+    incomeTransactionsDisplay.style.display = 'flex';
+    expenseTransactionsDisplay.style.display = 'none';
+    budgetTracker.getIncomeTransactions();
+    if (incomeList.length !== 0) {
+        budgetTracker.displayTransactions(incomeTransactionsDisplay, incomeList);
+    }
+})
+
+expenseHeader.addEventListener('click', () => {
+    currentTransactionHeader.innerText = expenseHeader.innerText;
+    selectTransactionHeader.style.display = 'none';
+    transactionsDisplay.style.display = 'none';
+    incomeTransactionsDisplay.style.display = 'none';
+    expenseTransactionsDisplay.style.display = 'flex';
+    budgetTracker.getExpenseTransactions();
+    if (expenseList.length !== 0) {
+        budgetTracker.displayTransactions(expenseTransactionsDisplay, expenseList);
+    }
+})
