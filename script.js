@@ -62,7 +62,6 @@ class Budget {
         // add income into total budget
         // subtract expense from total budget
         const transactionType = Object.values(transaction)[0];
-        console.log(transactionType);
         const amount = Number(Object.values(transaction)[2]);
         if (transactionType === 'income') {
             this.budget += amount;
@@ -220,7 +219,6 @@ let currentIndex = 1;
 showSlide(currentIndex);
 
 function showSlide(index) {
-    console.log(`going to slide ${index}`);
     if (index > overviewSlides.length) { currentIndex = 1 } // if index is more than length of slides, go to the first slide
     if (index < 1) { currentIndex = overviewSlides.length } // if index is less than 0 (negative), go to the last slide
     for (let i = 0; i < overviewSlides.length; i++) {
@@ -246,7 +244,6 @@ prevSlideBtn.addEventListener('click', prevSlide);
 
 for (let i = 0; i < indicators.length; i++) {
     indicators[i].addEventListener('click', function () {
-        console.log('indicator clicked');
         for (let i = 0; i < overviewSlides.length; i++) {
             overviewSlides[i].style.display = 'none';
         }

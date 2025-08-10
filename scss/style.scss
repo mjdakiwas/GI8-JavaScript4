@@ -13,7 +13,6 @@ $invalid-color: #f00;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    // margin: .85rem;
     color: #fff;
 
     div {
@@ -133,7 +132,6 @@ body {
 }
 
 #tracker {
-    // position: relative;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 35% 1fr;
@@ -436,7 +434,6 @@ body {
     }
 
     #tracker {
-        // background-color: #fff;
         display: flex;
         flex-direction: column;
         height: fit-content;
@@ -448,7 +445,6 @@ body {
             column-gap: 2rem;
             justify-content: space-around;
             margin: 4rem auto;
-            // justify-self: center;
             max-width: 1024px;
             order: 1;
 
@@ -459,7 +455,6 @@ body {
             #balance-display__container {
                 @include summaryDisplayCnt();
                 order: 2;
-                // flex: 2 0 auto;
                 padding-top: 3rem;
                 padding-bottom: 3rem;
                 min-width: 18rem;
@@ -479,7 +474,6 @@ body {
                 @include summaryDisplayCnt();
                 display: flex !important;
                 order: 1;
-                // flex: 1 1 auto;
                 min-width: 12rem;
                 max-width: 14rem;
                 color: $income-color;
@@ -489,7 +483,6 @@ body {
                 @include summaryDisplayCnt();
                 display: flex !important;
                 order: 3;
-                // flex: 1 1 auto;
                 min-width: 12rem;
                 max-width: 14rem;
                 color: $expense-color;
