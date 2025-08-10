@@ -15,6 +15,11 @@
 </head>
 
 <body>
+    <header>
+        <h1>My Budget Tracker</h1>
+        <hr>
+    </header>
+
     <main>
         <!-- input income and income description
         button add income -->
@@ -23,27 +28,44 @@
         button add expense -->
 
         <!-- display total budget, income, expenses -->
-        <header>
-            <h1>My Budget Tracker</h1>
-        </header>
 
-        <section id="mobile-tracker">
+        <div id="form-overlay"></div>
+
+        <section id="tracker">
             <section id="overview-display__container">
+                <button id="overview-left"><i class="material-icons">
+                        chevron_left
+                    </i></button>
+                <button id="overview-right"><i class="material-icons">
+                        chevron_right
+                    </i></button>
 
-                <section id="balance-display__container">
+                <section id="balance-display__container" class="overview-display__section">
                     <h2>Balance</h2>
-                    <p id="balance-display">$0.00</p>
+                    <div>
+                        <p id="balance-display">$0</p>
+                    </div>
                 </section>
 
-                <!-- <section id="income-display__container">
+                <section id="income-display__container" class="overview-display__section">
                     <h2>Income</h2>
-                    <p id="income-display"></p>
+                    <div>
+                        <p id="income-display">$0</p>
+                    </div>
                 </section>
 
-                <section id="expense-display__container">
+                <section id="expense-display__container" class="overview-display__section">
                     <h2>Expense</h2>
-                    <p id="expense-display"></p>
-                </section> -->
+                    <div>
+                        <p id="expense-display">$0</p>
+                    </div>
+                </section>
+
+                <div id="indicators">
+                    <div class="indicator active"></div>
+                    <div class="indicator"></div>
+                    <div class="indicator"></div>
+                </div>
             </section>
 
 
@@ -58,15 +80,17 @@
                 <hr>
 
                 <section id="transaction-display">
-
+                    <div id="placeholder-container">
+                        <p>No transactions.</p>
+                    </div>
                 </section>
             </section>
 
-            <div id="form-overlay"></div>
+
             <form id="new-transaction__container">
                 <div class="transaction-header__container">
                     <h2>Add New Transaction</h2>
-                    <button id="close-new-transaction"><i class="material-icons">
+                    <button type="button" id="close-new-transaction"><i class="material-icons">
                             cancel
                         </i></button>
                 </div>
@@ -80,11 +104,13 @@
                         <option value="income">Income</option>
                         <option value="expense">Expense</option>
                     </select>
+                    <p id="transaction-type__invalid" class="invalid-notification"></p>
                 </div>
 
                 <div>
                     <label for="description">Description</label>
                     <input type="text" name="description" id="description">
+                    <p id="description__invalid" class="invalid-notification"></p>
                 </div>
 
                 <div>
@@ -95,11 +121,26 @@
                         </i>
                         <input type="number" name="amount" id="amount">
                     </div>
+                    <p id="amount__invalid" class="invalid-notification"></p>
                 </div>
 
                 <button type="submit" id="add-transaction">ADD TRANSACTION</button>
             </form>
         </section>
+
+        <!-- <section id="widescreen-tracker">
+            <section id="overview-display__wide-container">
+                <section id="income-display__wide-container"></section>
+                <section id="balance-display__wide-container"></section>
+                <section id="expense-display__wide-container"></section>
+            </section>
+
+            <hr>
+
+            <section id="new-transaction__wide-container">
+
+            </section>
+        </section> -->
     </main>
     <script src="script.js"></script>
 </body>

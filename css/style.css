@@ -5,15 +5,31 @@
 }
 
 body {
+  background: linear-gradient(to bottom, #775bb9, #5B6EB9);
   font-family: "Livvic", sans-serif;
 }
 body header {
   height: fit-content;
   width: 100%;
   background-color: #775bb9;
+  z-index: 10;
+}
+body header hr {
+  margin: 0;
+}
+body #form-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.25);
+  z-index: 1;
 }
 body hr {
   margin-bottom: 1rem;
+  color: #775bb9;
 }
 body h1 {
   padding: 1.5rem 0 1.5rem 0;
@@ -25,134 +41,257 @@ body h1 {
 body h2 {
   margin: 0.5rem 0 0.5rem 0;
   font-size: 1.65rem;
+  color: #fff;
+}
+body button {
+  background-color: transparent;
+  border: none;
+}
+body button:hover {
+  cursor: pointer;
 }
 
-#mobile-tracker #overview-display__container #balance-display__container {
-  text-align: center;
-}
-#mobile-tracker #overview-display__container #balance-display__container h2 {
-  margin-top: 1.25rem;
-}
-#mobile-tracker #transaction-display__container {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  min-height: 60%;
-  background-color: #775bb9;
-  border-radius: 2rem 2rem 0 0;
-}
-#mobile-tracker #transaction-display__container h2 {
-  text-align: center;
-  color: #fff;
-}
-#mobile-tracker #transaction-display__container button {
-  background-color: transparent;
-  border: none;
-}
-#mobile-tracker #transaction-display__container button:hover {
-  cursor: pointer;
-}
-#mobile-tracker #transaction-display__container .material-icons {
-  color: rgb(255, 255, 255);
-}
-#mobile-tracker #transaction-display__container .transaction-header__container {
+#tracker {
   display: grid;
-  grid-template-columns: 20% 60% 20%;
-  margin: 1.25rem 0 1rem 0;
-}
-#mobile-tracker #transaction-display__container .transaction-header__container i {
-  font-size: 2.5rem;
-}
-#mobile-tracker #form-overlay {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
+  grid-template-columns: auto;
+  grid-template-rows: 35% 1fr;
+  height: calc(100vh - 78px);
   width: 100vw;
-  background-color: rgba(255, 255, 255, 0.25);
+  overflow: hidden;
 }
-#mobile-tracker #new-transaction__container {
+#tracker #overview-display__container {
+  position: relative;
+  margin: 1rem;
+}
+#tracker #overview-display__container button {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  min-height: 60%;
-  background-color: #775bb9;
-  border-radius: 2rem 2rem 0 0;
-  display: none;
-  flex-direction: column;
-  z-index: 1;
-  box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.5);
+  top: 50%;
 }
-#mobile-tracker #new-transaction__container h2 {
+#tracker #overview-display__container button i {
+  font-size: 2.5rem;
+  color: #fff;
+}
+#tracker #overview-display__container #overview-left {
+  left: 0.5rem;
+}
+#tracker #overview-display__container #overview-right {
+  right: 0.5rem;
+}
+#tracker #overview-display__container #balance-display__container {
+  display: flex;
+  height: calc(100% - 3rem);
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   color: #fff;
 }
-#mobile-tracker #new-transaction__container button {
-  background-color: transparent;
-  border: none;
+#tracker #overview-display__container #balance-display__container div {
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
 }
-#mobile-tracker #new-transaction__container button:hover {
-  cursor: pointer;
+#tracker #overview-display__container #balance-display__container div p {
+  font-size: 3rem;
 }
-#mobile-tracker #new-transaction__container .material-icons {
-  color: rgb(255, 255, 255);
+#tracker #overview-display__container #income-display__container {
+  display: none;
+  height: calc(100% - 3rem);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
 }
-#mobile-tracker #new-transaction__container .transaction-header__container {
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  margin: 1.25rem 0 1rem 0;
+#tracker #overview-display__container #income-display__container div {
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
 }
-#mobile-tracker #new-transaction__container .transaction-header__container i {
-  font-size: 2.5rem;
+#tracker #overview-display__container #income-display__container div p {
+  font-size: 3rem;
 }
-#mobile-tracker #new-transaction__container .transaction-header__container h2 {
+#tracker #overview-display__container #expense-display__container {
+  display: none;
+  height: calc(100% - 3rem);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+#tracker #overview-display__container #expense-display__container div {
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
+}
+#tracker #overview-display__container #expense-display__container div p {
+  font-size: 3rem;
+}
+#tracker #overview-display__container #indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5rem;
+  width: fit-content;
+  margin: auto;
+  padding: 0.25rem;
+}
+#tracker #overview-display__container #indicators .active {
+  background-color: #473188;
+}
+#tracker #overview-display__container #indicators > div {
+  height: 0.85rem;
+  width: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 25px;
+}
+#tracker .transaction-header__container h2 {
   grid-column: 2/3;
 }
-#mobile-tracker #new-transaction__container .transaction-header__container #close-new-transaction {
+#tracker .transaction-header__container #close-new-transaction {
   grid-column: 3/4;
 }
-#mobile-tracker #new-transaction__container > div {
+#tracker #transaction-display__container {
+  width: 100%;
+  min-height: 60%;
+  background-color: #fff;
+  border-radius: 2rem 2rem 0 0;
+}
+#tracker #transaction-display__container h2 {
+  text-align: center;
+  color: #775bb9;
+}
+#tracker #transaction-display__container .material-icons {
+  color: #473188;
+}
+#tracker #transaction-display__container .transaction-header__container {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  margin: 1.25rem 0 1rem 0;
+}
+#tracker #transaction-display__container .transaction-header__container i {
+  font-size: 2.5rem;
+}
+#tracker #transaction-display__container hr {
+  margin: 0;
+}
+#tracker #transaction-display__container #transaction-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100% - 85px);
+  overflow-y: scroll;
+}
+#tracker #transaction-display__container #transaction-display #placeholder-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1 0 auto;
+}
+#tracker #transaction-display__container #transaction-display #placeholder-container > p {
+  color: #775bb9;
+  opacity: 0.75;
+  text-align: center;
+}
+#tracker #transaction-display__container #transaction-display .transaction-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.15rem 2rem;
+}
+#tracker #transaction-display__container #transaction-display .transaction-container .transaction-description {
+  font-size: 1rem;
+}
+#tracker #transaction-display__container #transaction-display .transaction-container .transaction-amount {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+#tracker #transaction-display__container #transaction-display .transaction-divider {
+  width: 90%;
+}
+#tracker #new-transaction__container {
+  animation: slide-in 1s ease-in 0.5s forwards;
+  width: 100%;
+  min-height: 60%;
+  background-color: #fff;
+  border-radius: 2rem 2rem 0 0;
+  transform: translateY(100%);
+  display: none;
+  position: absolute;
+  bottom: 0;
+  flex-direction: column;
+  z-index: 5;
+  box-shadow: 0px -1px 10px 1px rgba(0, 0, 0, 0.5);
+}
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+#tracker #new-transaction__container h2 {
+  text-align: center;
+  color: #775bb9;
+}
+#tracker #new-transaction__container .material-icons {
+  color: #473188;
+}
+#tracker #new-transaction__container .transaction-header__container {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  margin: 1.25rem 0 1rem 0;
+}
+#tracker #new-transaction__container .transaction-header__container i {
+  font-size: 2.5rem;
+}
+#tracker #new-transaction__container > div {
   display: flex;
   flex-direction: column;
   margin: 1.5rem 1.5rem 0 1.5rem;
 }
-#mobile-tracker #new-transaction__container > div label {
+#tracker #new-transaction__container > div label {
   margin-bottom: 0.5rem;
-  color: white;
+  color: #775bb9;
   font-weight: 500;
   font-size: 0.95rem;
 }
-#mobile-tracker #new-transaction__container > div > div {
+#tracker #new-transaction__container > div > div {
   position: relative;
 }
-#mobile-tracker #new-transaction__container > div > div i {
+#tracker #new-transaction__container > div > div i {
   position: absolute;
   top: 0.75rem;
   left: 1rem;
   color: #5f45a0 !important;
   z-index: 2;
 }
-#mobile-tracker #new-transaction__container > div > div input {
+#tracker #new-transaction__container > div > div input {
   width: 100%;
 }
-#mobile-tracker #new-transaction__container select,
-#mobile-tracker #new-transaction__container input {
+#tracker #new-transaction__container select,
+#tracker #new-transaction__container input {
   height: 3rem;
   border-radius: 12px;
   padding: 0.5rem 1rem 0.5rem 1.5rem;
   border: none;
   font-family: "Livvic", sans-serif;
   font-size: 0.9rem;
+  border: solid 1px #5f45a0;
 }
-#mobile-tracker #new-transaction__container select:focus,
-#mobile-tracker #new-transaction__container input:focus {
+#tracker #new-transaction__container select:focus,
+#tracker #new-transaction__container input:focus {
   outline: none;
 }
-#mobile-tracker #new-transaction__container #amount {
+#tracker #new-transaction__container #amount {
   padding-left: 3rem;
 }
-#mobile-tracker #new-transaction__container div + button {
+#tracker #new-transaction__container div + button {
   width: fit-content;
   margin: 2rem auto;
   padding: 1.25rem 2rem;
@@ -162,6 +301,143 @@ body h2 {
   font-family: "Livvic", sans-serif;
   font-size: 1.15rem;
   font-weight: 900;
+}
+#tracker #new-transaction__container .invalid {
+  border-color: #f00;
+}
+#tracker #new-transaction__container .invalid-notification {
+  display: none;
+  margin: 0.25rem;
+  font-size: 0.85rem;
+  color: #f00;
+}
+
+@media screen and (min-width: 768px) {
+  body h2 {
+    color: #775bb9;
+  }
+  #tracker {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+  }
+  #tracker #overview-display__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 2rem;
+    justify-content: space-around;
+    margin: 4rem auto;
+    max-width: 1024px;
+    order: 1;
+  }
+  #tracker #overview-display__container button {
+    display: none;
+  }
+  #tracker #overview-display__container #balance-display__container {
+    height: fit-content;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    border: solid 1px #775bb9;
+    background-color: #fff;
+    color: #000;
+    order: 2;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    min-width: 18rem;
+    max-width: 20rem;
+    color: #5f45a0;
+  }
+  #tracker #overview-display__container #balance-display__container div {
+    flex: none;
+  }
+  #tracker #overview-display__container #balance-display__container h2 {
+    font-size: 2.5rem;
+  }
+  #tracker #overview-display__container #balance-display__container div p {
+    font-size: 4.25rem;
+  }
+  #tracker #overview-display__container #income-display__container {
+    height: fit-content;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    border: solid 1px #775bb9;
+    background-color: #fff;
+    color: #000;
+    display: flex !important;
+    order: 1;
+    min-width: 12rem;
+    max-width: 14rem;
+    color: #2BB026;
+  }
+  #tracker #overview-display__container #income-display__container div {
+    flex: none;
+  }
+  #tracker #overview-display__container #expense-display__container {
+    height: fit-content;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    border: solid 1px #775bb9;
+    background-color: #fff;
+    color: #000;
+    display: flex !important;
+    order: 3;
+    min-width: 12rem;
+    max-width: 14rem;
+    color: #b0262b;
+  }
+  #tracker #overview-display__container #expense-display__container div {
+    flex: none;
+  }
+  #tracker #overview-display__container #indicators {
+    display: none;
+  }
+  #tracker .transaction-header__container button {
+    display: none;
+  }
+  #tracker #transaction-display__container {
+    border-radius: 0;
+    order: 3;
+  }
+  #tracker #transaction-display__container h2 {
+    text-align: left;
+  }
+  #tracker #transaction-display__container .transaction-header__container {
+    display: block;
+    margin: 1rem 2rem;
+  }
+  #tracker #transaction-display__container #transaction-display {
+    height: 50vh;
+  }
+  #tracker #new-transaction__container {
+    transform: translateY(0%);
+    animation: none;
+    border-radius: 0;
+    position: relative;
+    display: flex;
+    order: 2;
+    box-shadow: none;
+    min-height: auto;
+  }
+  #tracker #new-transaction__container h2 {
+    text-align: left;
+  }
+  #tracker #new-transaction__container .transaction-header__container {
+    display: block;
+    margin: 1rem 2rem;
+  }
+  #tracker #new-transaction__container > div {
+    margin: 1rem 1.5rem 0 1.5rem;
+  }
+  #tracker #new-transaction__container div + button {
+    margin: 2rem 1.5rem 2rem auto;
+  }
+}
+@media screen and (min-width: 1440px) {
+  #tracker {
+    margin: auto;
+    max-width: 1440px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
